@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/jhoogst2/Dropbox/webdev/rails_projects/medial_operations'
+let g:netrw_dirhist_2='/Users/jhoogst2/Dropbox/webdev/rails_projects/medial_operations/macvim/src'
+let g:netrw_dirhist_3='/Users/jhoogst2/Dropbox/webdev/rails_projects/medial_operations/macvim'
+let g:netrw_dirhist_4='/Users/jhoogst2/Dropbox/webdev/rails_projects/medial_operations/lib/tasks'
