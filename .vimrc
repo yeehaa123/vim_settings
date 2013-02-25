@@ -84,3 +84,4 @@ imap <S-Tab> <C-N>
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
