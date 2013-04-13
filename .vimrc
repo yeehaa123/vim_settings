@@ -1,7 +1,7 @@
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 set nocompatible                  " Must come first because it changes other options.
-
+set nocp
 call pathogen#infect()
 
 syntax enable                     " Turn on syntax highlighting.
@@ -39,10 +39,7 @@ set nobackup                      " Don't make a backup before overwriting a fil
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
-" UNCOMMENT TO USE
-"set tabstop=2                    " Global tab width.
-"set shiftwidth=2                 " And again, related.
-"set expandtab                    " Use spaces instead of tabs
+set ts=2 sts=2 sw=2 expandtab                    " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
@@ -85,3 +82,31 @@ imap <S-Tab> <C-N>
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+  
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
