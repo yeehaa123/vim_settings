@@ -66,6 +66,7 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 imap <S-Tab> <C-N>
+inoremap <C-s> <esc>:w<CR>
 
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
@@ -76,7 +77,7 @@ imap <S-Tab> <C-N>
 
 "vnoremap ; :
 "vnoremap : ;
-
+"
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
