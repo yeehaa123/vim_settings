@@ -45,6 +45,8 @@ set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
+command! -nargs=* Wrap set wrap linebreak nolist
+
 " Or use vividchalk
 if has('gui_running')
   set background=dark
@@ -68,19 +70,20 @@ map <leader>tm :tabmove
 imap <S-Tab> <C-N>
 inoremap <C-s> <esc>:w<CR>
 
-" Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
-" Controversial...swap colon and semicolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
+" XMP filter - terminal
+nmap <buffer> <F5> <Plug>(xmpfilter-run)
+xmap <buffer> <F5> <Plug>(xmpfilter-run)
+imap <buffer> <F5> <Plug>(xmpfilter-run)
 
-"vnoremap ; :
-"vnoremap : ;
-"
-" Automatic fold settings for specific files. Uncomment to use.
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+nmap <buffer> <F4> <Plug>(xmpfilter-mark)
+xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+
+imap <buffer> <F4> <Plug>(xmpfilter-mark)
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
@@ -112,11 +115,3 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-" XMP filter - terminal
-nmap <buffer> <F5> <Plug>(xmpfilter-run)
-xmap <buffer> <F5> <Plug>(xmpfilter-run)
-imap <buffer> <F5> <Plug>(xmpfilter-run)
-
-nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-imap <buffer> <F4> <Plug>(xmpfilter-mark)
