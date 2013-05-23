@@ -9,6 +9,9 @@ filetype plugin indent on         " Turn on file type detection.
 
 runtime macros/matchit.vim        " Load the matchit plugin.
 
+let mapleader = "\\"
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 
@@ -54,6 +57,16 @@ else
   set background=light
 endif
 colorscheme solarized
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+nmap <C-j> gj
+nmap <C-k> gk
 
 " Tab mappings.
 " mappings
@@ -114,4 +127,8 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
+
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 
