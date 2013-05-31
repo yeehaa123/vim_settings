@@ -132,3 +132,4 @@ if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
+set directory+=,~/tmp,$TMP
