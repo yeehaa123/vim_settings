@@ -51,12 +51,13 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLo
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " Or use vividchalk
-if has('gui_running')
-  set background=dark
-else
-  set background=light
-endif
+set background=light
 colorscheme solarized
+
+set foldmethod=syntax
+set foldnestmax=5
+autocmd BufEnter * exe "normal zR"
+
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -87,6 +88,8 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+nnoremap <F6> :GundoToggle<CR>
 
 " XMP filter - terminal
 nmap <buffer> <F5> <Plug>(xmpfilter-run)
