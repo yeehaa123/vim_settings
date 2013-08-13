@@ -1,6 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/Users/jhoogst2/.vim/.git'
 let g:netrw_dirhist_2='/'
 let g:netrw_dirhist_3='/Users/yeehaa/Dropbox/gist-the-humanities/lib'
 let g:netrw_dirhist_4='/Users/yeehaa/Dropbox/coding_the_humanities/test'
+let g:netrw_dirhist_5='/Users/yeehaa/Desktop/artoo/artoo-arduino'

@@ -83,6 +83,7 @@ map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 imap <S-Tab> <C-N>
 inoremap <C-s> <esc>:w<CR>
+nmap <silent> <leader>d <Plug>DashSearch
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
