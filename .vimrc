@@ -10,7 +10,8 @@ filetype plugin indent on         " Turn on file type detection.
 runtime macros/matchit.vim        " Load the matchit plugin.
 
 let mapleader = "\\"
-nmap <leader>v :tabedit $MYVIMRC<CR>
+let maplocalleader = ","
+nnoremap <leader>v :tabedit $MYVIMRC<CR>
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -32,6 +33,10 @@ set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 
 set wrap                          " Turn on line wrapping.
+
+set showmatch
+set matchtime=1
+
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
@@ -56,53 +61,67 @@ colorscheme solarized
 
 set foldmethod=syntax
 set foldnestmax=5
-autocmd BufEnter * exe "normal zR"
 
+iabbrev adn and
+iabbrev @@ yeehaa@codingthehumanities.com
+iabbrev cdh http://codingthehumanities.com
 
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+inoremap kj <esc>
+inoremap <esc> <nop>
+inoremap <c-d> <esc>ddi
+inoremap <c-u> <esc>viwUi
 
-nmap <C-j> gj
-nmap <C-k> gk
+noremap <space> viw
 
-" Tab mappings.
-" mappings
-map <leader>te :tabedit
-map <leader>tt :tabnew<cr>
-map <leader>r :register<cr>
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
-imap <S-Tab> <C-N>
-inoremap <C-s> <esc>:w<CR>
-nmap <silent> <leader>d <Plug>DashSearch
+nnoremap L $
+nnoremap H 0
+
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Down> ]egv
+vmap <C-Up> [egv
+
+" Tab mappings.
+" mappings
+noremap <leader>te :tabedit
+noremap <leader>tt :tabnew<cr>
+noremap <leader>r :register<cr>
+noremap <leader>tc :tabclose<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tn :tabnext<cr>
+noremap <leader>tp :tabprevious<cr>
+noremap <leader>tf :tabfirst<cr>
+noremap <leader>tl :tablast<cr>
+noremap <leader>tm :tabmove
+inoremap <S-Tab> <C-N>
+inoremap <C-s> <esc>:w<CR>
+nnoremap <silent> <leader>d <Plug>DashSearch
+
+
+nnoremap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+inoremap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+nnoremap <F2> :.w !pbcopy<CR><CR>
+vnoremap <F2> :w !pbcopy<CR><CR>
 nnoremap <F6> :GundoToggle<CR>
 
 " XMP filter - terminal
-nmap <buffer> <F5> <Plug>(xmpfilter-run)
-xmap <buffer> <F5> <Plug>(xmpfilter-run)
-imap <buffer> <F5> <Plug>(xmpfilter-run)
+nnoremap <buffer> <F5> <Plug>(xmpfilter-run)
+xnoremap <buffer> <F5> <Plug>(xmpfilter-run)
+inoremap <buffer> <F5> <Plug>(xmpfilter-run)
 
-nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+nnoremap <buffer> <F4> <Plug>(xmpfilter-mark)
+xnoremap <buffer> <F4> <Plug>(xmpfilter-mark)
 
-imap <buffer> <F4> <Plug>(xmpfilter-mark)
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+inoremap <buffer> <F4> <Plug>(xmpfilter-mark)
+
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
@@ -115,7 +134,7 @@ function! Stab()
   endif
   call SummarizeTabs()
 endfunction
-  
+
 function! SummarizeTabs()
   try
     echohl ModeMsg
@@ -131,6 +150,17 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
+
+augroup auto_commands
+  autocmd BufEnter * exe "normal zR"
+  autocmd BufWritePre,BufRead *.html :normal gg=G
+  autocmd BufWritePre,BufRead *.rb :normal gg=G
+  autocmd BufWritePre,BufRead *.coffee :normal gg=G
+  autocmd FileType html :iabbrev <buffer> hmtl html
+  autocmd FileType html :iabbrev <buffer> boyd body
+  autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+  autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+augroup END
 
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
