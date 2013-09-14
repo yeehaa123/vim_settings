@@ -1,5 +1,7 @@
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+set re=1
+
 set nocompatible                  " Must come first because it changes other options.
 set nocp
 call pathogen#infect()
@@ -66,7 +68,8 @@ iabbrev adn and
 iabbrev @@ yeehaa@codingthehumanities.com
 iabbrev cdh http://codingthehumanities.com
 
-inoremap kj <esc>
+inoremap <Tab> <C-N>
+inoremap jj <esc>
 inoremap <esc> <nop>
 inoremap <c-d> <esc>ddi
 inoremap <c-u> <esc>viwUi
@@ -75,7 +78,6 @@ noremap <space> viw
 
 nnoremap L $
 nnoremap H 0
-
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -101,7 +103,6 @@ noremap <leader>tp :tabprevious<cr>
 noremap <leader>tf :tabfirst<cr>
 noremap <leader>tl :tablast<cr>
 noremap <leader>tm :tabmove
-inoremap <S-Tab> <C-N>
 inoremap <C-s> <esc>:w<CR>
 nnoremap <silent> <leader>d <Plug>DashSearch
 
@@ -153,11 +154,7 @@ endfunction
 
 augroup auto_commands
   autocmd BufEnter * exe "normal zR"
-  autocmd BufWritePre,BufRead *.html :normal gg=G
-  autocmd BufWritePre,BufRead *.rb :normal gg=G
-  autocmd BufWritePre,BufRead *.coffee :normal gg=G
-  autocmd FileType html :iabbrev <buffer> hmtl html
-  autocmd FileType html :iabbrev <buffer> boyd body
+  " autocmd BufWritePre,BufRead *.rb :normal gg=G
   autocmd BufNewFile,BufRead *_spec.rb compiler rspec
   autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 augroup END
