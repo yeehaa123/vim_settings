@@ -1,2 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/yeehaa/Documents/Projects/coding-the-humanities-public/src/files/rijks/app'
+let g:netrw_dirhist_2='/home/yeehaa/Documents/Teaching/AST/src/documents/sessions'
+let g:netrw_dirhist_3='/home/yeehaa/Documents/Projects/erc/pitches'

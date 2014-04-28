@@ -1,6 +1,6 @@
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-set re=1
+" set re=1
 
 set nocompatible                  " Must come first because it changes other options.
 set nocp
@@ -11,6 +11,7 @@ filetype plugin indent on         " Turn on file type detection.
 
 runtime macros/matchit.vim        " Load the matchit plugin.
 
+let g:mustache_abbreviations = 1
 let mapleader = "\\"
 let maplocalleader = ","
 nnoremap <leader>v :tabedit $MYVIMRC<CR>
@@ -55,14 +56,14 @@ set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
+" Use par for formatting text
+set formatprg=par
+
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " Or use vividchalk
-set background=light
+set background=dark
 colorscheme solarized
-
-set foldmethod=syntax
-set foldnestmax=5
 
 iabbrev adn and
 iabbrev @@ yeehaa@codingthehumanities.com
@@ -83,6 +84,9 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+xnoremap .  :norm.<CR>
+
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -136,6 +140,13 @@ function! Stab()
   call SummarizeTabs()
 endfunction
 
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
 function! SummarizeTabs()
   try
     echohl ModeMsg
@@ -157,6 +168,12 @@ augroup auto_commands
   " autocmd BufWritePre,BufRead *.rb :normal gg=G
   autocmd BufNewFile,BufRead *_spec.rb compiler rspec
   autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+augroup END
+
+augroup filetypedetect
+  " Mail
+  autocmd BufRead,BufNewFile *mutt-*
+  setfiletype mail
 augroup END
 
 if has("autocmd")
