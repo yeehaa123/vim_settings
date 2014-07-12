@@ -1,5 +1,15 @@
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+" Snippets are separated from the engine. Add this if you want them:
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 " set re=1
 
 set nocompatible                  " Must come first because it changes other options.
@@ -62,14 +72,12 @@ set formatprg=par
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " Or use vividchalk
-set background=dark
-colorscheme solarized
+colorscheme jellybeans
 
 iabbrev adn and
 iabbrev @@ yeehaa@codingthehumanities.com
 iabbrev cdh http://codingthehumanities.com
 
-inoremap <Tab> <C-N>
 inoremap jj <esc>
 inoremap <esc> <nop>
 inoremap <c-d> <esc>ddi

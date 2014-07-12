@@ -1,5 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/yeehaa/Documents/Projects/coding-the-humanities-public/src/files/rijks/app'
-let g:netrw_dirhist_2='/home/yeehaa/Documents/Teaching/AST/src/documents/sessions'
-let g:netrw_dirhist_3='/home/yeehaa/Documents/Projects/erc/pitches'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/yeehaa/Documents/spikes/simple-server-polymer/public'
+let g:netrw_dirhist_2='/home/yeehaa/Documents/spikes/platform/flatify'
+let g:netrw_dirhist_3='/home/yeehaa/Documents/spikes/platform/flatify/client'
+let g:netrw_dirhist_4='/home/yeehaa/Documents/coding-the-humanities/pilot/chatterbox'
+let g:netrw_dirhist_5='/home/yeehaa/Documents/coding-the-humanities/pilot/src/images'
+let g:netrw_dirhist_6='/home/yeehaa/Documents/spikes/pilot/housemouse/src/elements'
+let g:netrw_dirhist_7='/home/yeehaa/Documents/spikes/pilot/housemouse/src'
+let g:netrw_dirhist_8='/home/yeehaa/Documents/spikes/platform-ember'
